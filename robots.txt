@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vanoarqcl-arq.github.io/vano-arquitectura/sitemap.xml

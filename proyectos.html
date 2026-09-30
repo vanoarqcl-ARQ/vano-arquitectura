@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Proyectos — Vano Arquitectura</title>
+<meta name="description" content="Casas, cabañas y proyectos de Vano Arquitectura en la Región del Maule y O’Higgins. Filtra por tipo, estado, región y año.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Proyectos — Vano Arquitectura">
+<meta property="og:description" content="Casas, cabañas y proyectos de Vano Arquitectura en la Región del Maule y O’Higgins. Filtra por tipo, estado, región y año.">
+<meta property="og:image" content="https://vanoarqcl-arq.github.io/vano-arquitectura/img/casa-haras/01.jpg">
+<meta property="og:url" content="https://vanoarqcl-arq.github.io/vano-arquitectura/proyectos.html">
+<link rel="canonical" href="https://vanoarqcl-arq.github.io/vano-arquitectura/proyectos.html">
+<meta name="theme-color" content="#1f1fff">
+<link rel="icon" href="img/marca/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="proyectos">
+<header id="site-header"></header>
+<main>
+<div class="wrap"><div class="page-title"><p class="eyebrow">Obra</p><h1>Proyectos</h1></div>
+<div class="filtros" id="filtros"></div><p class="conteo" id="conteo"></p>
+<div class="grid" id="grilla"></div>
+<div id="mapa-wrap" hidden><div id="mapa"></div><p class="note">Ubicaciones referenciales, a nivel de sector.</p></div></div>
+<div style="height:80px"></div>
+<script>if(location.hash==='#mapa'){window.addEventListener('load',function(){var b=document.querySelector('[data-v="mapa"]');if(b)b.click();});}</script>
+</main>
+<footer id="site-footer"></footer>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
