@@ -19,7 +19,7 @@
   $('#site-footer').innerHTML =
     '<div class="wrap foot"><div><img class="foot-logo" src="img/marca/logo.png" alt="VANO arquitectura"><p>Arquitectura · Diseño · Obra nueva · Regularizaciones · Modelación BIM</p><p>Oficina en ' + esc(D.oficina) + '</p></div>' +
     '<div><a href="' + D.instagram + '" target="_blank" rel="noopener">Instagram @vanoarquitectura.cl</a>' +
-    '<a href="mailto:' + D.email + '">' + D.email + '</a><a href="tel:' + tel + '">' + D.telefono + '</a></div>' +
+    '<a href="mailto:' + D.email + '">' + D.email + '</a><a href="tel:' + tel + '">' + D.telefono + '</a>' + (D.telefono2 ? '<a href="tel:' + D.telefono2.replace(/\s/g, '') + '">' + D.telefono2 + '</a>' : '') + '</div>' +
     '<div><a href="proyectos.html">Proyectos</a><a href="guias.html">Guías</a><a href="contacto.html#cotiza">Cotiza tu proyecto</a><div class="copy">© ' + new Date().getFullYear() + ' Vano Arquitectura SpA</div></div></div>';
 
   var wa = document.createElement('a');
@@ -170,6 +170,7 @@
   /* ---------- Contacto (datos + formulario) ---------- */
   if ($('#contacto-datos')) {
     var c = '<a href="mailto:' + D.email + '">' + D.email + '</a><a href="tel:' + tel + '">' + D.telefono + '</a>' +
+      (D.telefono2 ? '<a href="tel:' + D.telefono2.replace(/\s/g, '') + '">' + D.telefono2 + '</a>' : '') +
       '<a href="' + D.instagram + '" target="_blank" rel="noopener">Instagram @vanoarquitectura.cl</a>';
     $('#contacto-datos').innerHTML = c;
   }

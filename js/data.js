@@ -9,6 +9,7 @@ window.VANO = {
   instagram: 'https://www.instagram.com/vanoarquitectura.cl',
   email: 'vanoarqcl@gmail.com',
   telefono: '+56 9 6494 9455',
+  telefono2: '+56 9 7553 6795',
   whatsapp: '56964949455',
   oficina: 'Talca, Región del Maule',
   estados: ['Construido', 'En obra', 'Proyecto', 'Anteproyecto', 'Proyecto no construido'],
