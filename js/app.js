@@ -199,3 +199,11 @@
     form.onsubmit = function (e) { e.preventDefault(); };
   }
 })();
+
+/* Video de portada: sin movimiento si el usuario lo prefiere */
+(function () {
+  var v = document.getElementById('hero-video');
+  if (!v) return;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); }
+  v.addEventListener('error', function () { v.remove(); });
+})();
