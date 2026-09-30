@@ -22,11 +22,19 @@
     '<a href="mailto:' + D.email + '">' + D.email + '</a><a href="tel:' + tel + '">' + D.telefono + '</a>' + (D.telefono2 ? '<a href="tel:' + D.telefono2.replace(/\s/g, '') + '">' + D.telefono2 + '</a>' : '') + '</div>' +
     '<div><a href="proyectos.html">Proyectos</a><a href="guias.html">Guías</a><a href="contacto.html#cotiza">Cotiza tu proyecto</a><div class="copy">© ' + new Date().getFullYear() + ' Vano Arquitectura SpA</div></div></div>';
 
-  var wa = document.createElement('a');
-  wa.className = 'wa'; wa.target = '_blank'; wa.rel = 'noopener';
-  wa.href = 'https://wa.me/' + D.whatsapp + '?text=' + encodeURIComponent('Hola, quisiera cotizar un proyecto con Vano Arquitectura.');
-  wa.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 4h16v12H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>WhatsApp</span>';
-  document.body.appendChild(wa);
+  var waNums = [D.telefono, D.telefono2].filter(Boolean).map(function (t) { return { n: t, id: t.replace(/\D/g, '') }; });
+  var waLink = function (id, txt) { return 'https://wa.me/' + id + '?text=' + encodeURIComponent(txt); };
+  var waBox = document.createElement('div');
+  waBox.className = 'wa-box';
+  waBox.innerHTML = '<div class="wa-menu" id="wa-menu" hidden><p>¿A qué número quieres escribir?</p>' +
+    waNums.map(function (x) { return '<a href="' + waLink(x.id, 'Hola, quisiera cotizar un proyecto con Vano Arquitectura.') + '" target="_blank" rel="noopener">' + esc(x.n) + '</a>'; }).join('') + '</div>' +
+    '<button type="button" class="wa" aria-expanded="false" aria-controls="wa-menu"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 4h16v12H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>WhatsApp</span></button>';
+  document.body.appendChild(waBox);
+  var waBtn = $('.wa', waBox), waMenu = $('#wa-menu', waBox);
+  var waToggle = function (open) { waMenu.hidden = !open; waBtn.setAttribute('aria-expanded', open); };
+  waBtn.onclick = function () { waToggle(waMenu.hidden); };
+  document.addEventListener('click', function (e) { if (!waBox.contains(e.target)) waToggle(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') waToggle(false); });
 
   /* ---------- Piezas reutilizables ---------- */
   var region = function (p) { var m = /Región (?:del?|de) .+$/.exec(p.ubicacion || ''); return m ? m[0] : ''; };
@@ -185,7 +193,9 @@
     };
     var ok = function () { if (form.checkValidity()) return true; form.reportValidity(); return false; };
     $('#enviar-mail').onclick = function () { if (ok()) location.href = 'mailto:' + D.email + '?subject=' + encodeURIComponent('Cotización: ' + form.elements.servicio.value) + '&body=' + encodeURIComponent(texto()); };
-    $('#enviar-wa').onclick = function () { if (ok()) window.open('https://wa.me/' + D.whatsapp + '?text=' + encodeURIComponent(texto()), '_blank', 'noopener'); };
+    var sel = $('#wanum');
+    sel.innerHTML = waNums.map(function (x) { return '<option value="' + x.id + '">' + esc(x.n) + '</option>'; }).join('');
+    $('#enviar-wa').onclick = function () { if (ok()) window.open(waLink(sel.value, texto()), '_blank', 'noopener'); };
     form.onsubmit = function (e) { e.preventDefault(); };
   }
 })();
